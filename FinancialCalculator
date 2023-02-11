@@ -1,0 +1,43 @@
+import math
+
+#ask user to select a calculation method
+investment_bond = str(input("""Choose either 'investment' or 'bond' from the menu below to proceed:
+'investment'' - to calculate the amount of interest you'll earn on your investment 
+'bond' - to calculate the amount you'll have to pay on a home loan \n""")).lower()
+
+
+#if investment is chosen, ask how much money is deposited, how long and what type of interest is used
+
+if investment_bond == "investment":
+    amount_money = float(input("Enter the amount of money you will be depositing.\n"))
+    interest_rate = float(input("What is the interest rate pe-rcentile?\n"))
+    num_years = float(input("How many years do you plan to invest?\n"))
+    interest_type = str(input("Choose either 'simple' or 'compound' interest\n")).lower()
+
+
+#depending on whether simple or compound interest is selected, calculate accordingly
+
+    if interest_type == "simple":
+        r = interest_rate/100
+        total_interest = amount_money*(1+(r*num_years)) 
+        print(f"The total amount of interest that you will earn is £ {total_interest}")
+
+    elif interest_type == "compound":
+            r = interest_rate/100
+            total_interest = amount_money *math.pow((1+r),num_years)
+            print(f"The total amount of interest that you will earn is £{total_interest}")
+
+
+#if user selects bond instead of investment
+
+elif investment_bond == "bond":
+    house_value = float(input("What is the present value of the house?\n"))
+    interest_rate = float(input("What is the interest rate percentile?\n"))
+    num_months = float(input("How many months do you plan to take to repay the bond?"))
+    i = interest_rate/12
+    monthly_bond_repayment = (i*house_value)/(1-(1+i)**(-num_months))
+    print(f"Your monthly repayment will be £{monthly_bond_repayment}")
+        
+else: 
+    print("You have not selected either 'investment' or 'bond'. Please try again and enter 'investment' or 'bond'. \n")
+    
