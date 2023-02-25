@@ -1,0 +1,66 @@
+#run code extracts from task using en_core_web_md
+import spacy
+nlp = spacy.load('en_core_web_md')
+
+word1 = nlp("cat")
+word2 = nlp("monkey")
+word3 = nlp("banana")
+print(word1.similarity(word2))
+print(word3.similarity(word2))
+print(word3.similarity(word1))
+
+tokens = nlp('cat apple monkey banana ')
+for token1 in tokens:
+    for token2 in tokens:
+        print(token1.text, token2.text, token1.similarity(token2))
+        
+sentence_to_compare = "Why is my cat on the car"
+sentences = ["where did my dog go",
+"Hello, there is my car",
+"I\'ve lost my car in my car",
+"I\'d like my boat back",
+"I will name my dog Diana"]
+model_sentence = nlp(sentence_to_compare)
+for sentence in sentences:
+similarity = nlp(sentence).similarity(model_sentence)
+print(sentence + " - ", similarity)
+
+#similarities between cat, monkey and banana:
+#cat and monkey a high similarity as theyre both animals, and monkey and banana have a high similarity because momkeys eat bananas. cat and banana have a lower percentage similarity as they are further in relation
+    
+    
+#my example:
+word4 = nlp("house")
+word5 = nlp("road")
+word6 = nlp("church")
+print(word4.similarity(word5))
+print(word6.similarity(word5))
+print(word6.similarity(word4))
+
+#run code using en_core_web_sm
+nlp2 = spacy.load('en_core_web_sm')
+
+word1 = nlp("cat")
+word2 = nlp("monkey")
+word3 = nlp("banana")
+print(word1.similarity(word2))
+print(word3.similarity(word2))
+print(word3.similarity(word1))
+
+tokens = nlp2('cat apple monkey banana ')
+for token1 in tokens:
+    for token2 in tokens:
+        print(token1.text, token2.text, token1.similarity(token2))
+        
+sentence_to_compare = "Why is my cat on the car"
+sentences = ["where did my dog go",
+"Hello, there is my car",
+"I\'ve lost my car in my car",
+"I\'d like my boat back",
+"I will name my dog Diana"]
+model_sentence = nlp2(sentence_to_compare)
+for sentence in sentences:
+similarity = nlp2(sentence).similarity(model_sentence)
+print(sentence + " - ", similarity)
+#difference between ‘en_core_web_sm’ and 'en_core_web_md':
+#en_core_web_md has a higher accuracy and more detail than en_core_web_sm
